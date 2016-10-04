@@ -14,9 +14,9 @@ After that you can test out the different behaviors by calling:
 
 | Uri | Expected result |
 |-----|-----------------|
-| [http://localhost:8897/fails/addok] | should return an incremented value for each successive call |
-| [http://localhost:8897/fails/addtrice] | should return an incremented value for each successive call but after 2 retries to the actor. Note that this mehod is very simply implemented in the `Actor1`, it just keeps a local counter that resets after 3 calls. |
-|  [http://localhost:8897/fails/addnever] | throws an exception, just to show you that exceptions are recreated on the client if not handled by an  [`IExceptionHandler`]( https://msdn.microsoft.com/en-us/library/microsoft.servicefabric.services.communication.client.iexceptionhandler.aspx) |
+| [http://localhost:8897/fails/addok](http://localhost:8897/fails/addok) | should return an incremented value for each successive call |
+| [http://localhost:8897/fails/addtrice](http://localhost:8897/fails/addtrice) | should return an incremented value for each successive call but after 2 retries to the actor. Note that this mehod is very simply implemented in the `Actor1`, it just keeps a local counter that resets after 3 calls. |
+|  [http://localhost:8897/fails/addnever](http://localhost:8897/fails/addnever) | throws an exception, just to show you that exceptions are recreated on the client if not handled by an  [`IExceptionHandler`]( https://msdn.microsoft.com/en-us/library/microsoft.servicefabric.services.communication.client.iexceptionhandler.aspx) |
 
 ## Findings
 * The retry functionality is executed by the client, not the service. This means that even though the client call is only made once and the client execution `await`s the result, the call is actually made three times to the failing actor method. This also means that another (non-failing) call to the same actor can sneak in there while the retrying call is waiting out it's delay time. **Don't expect reentrancy to block this second call for you.**
