@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "LabsCluster", "LabsCluster\LabsCluster.sfproj", "{DF2B3982-6018-4DDB-B5D8-23EBDAACDF52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Actor1", "Actor1\Actor1.csproj", "{1F08D348-E637-4650-BD12-9D85B1C585EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Actor1.Interfaces", "Actor1.Interfaces\Actor1.Interfaces.csproj", "{90468B3A-EFD8-4D80-8A20-73F19C29D119}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{2F657A5C-6E06-4D9C-8162-AAAAC48A0CAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DF2B3982-6018-4DDB-B5D8-23EBDAACDF52}.Debug|x64.ActiveCfg = Debug|x64
+		{DF2B3982-6018-4DDB-B5D8-23EBDAACDF52}.Debug|x64.Build.0 = Debug|x64
+		{DF2B3982-6018-4DDB-B5D8-23EBDAACDF52}.Debug|x64.Deploy.0 = Debug|x64
+		{DF2B3982-6018-4DDB-B5D8-23EBDAACDF52}.Release|x64.ActiveCfg = Release|x64
+		{DF2B3982-6018-4DDB-B5D8-23EBDAACDF52}.Release|x64.Build.0 = Release|x64
+		{DF2B3982-6018-4DDB-B5D8-23EBDAACDF52}.Release|x64.Deploy.0 = Release|x64
+		{1F08D348-E637-4650-BD12-9D85B1C585EC}.Debug|x64.ActiveCfg = Debug|x64
+		{1F08D348-E637-4650-BD12-9D85B1C585EC}.Debug|x64.Build.0 = Debug|x64
+		{1F08D348-E637-4650-BD12-9D85B1C585EC}.Release|x64.ActiveCfg = Release|x64
+		{1F08D348-E637-4650-BD12-9D85B1C585EC}.Release|x64.Build.0 = Release|x64
+		{90468B3A-EFD8-4D80-8A20-73F19C29D119}.Debug|x64.ActiveCfg = Debug|x64
+		{90468B3A-EFD8-4D80-8A20-73F19C29D119}.Debug|x64.Build.0 = Debug|x64
+		{90468B3A-EFD8-4D80-8A20-73F19C29D119}.Release|x64.ActiveCfg = Release|x64
+		{90468B3A-EFD8-4D80-8A20-73F19C29D119}.Release|x64.Build.0 = Release|x64
+		{2F657A5C-6E06-4D9C-8162-AAAAC48A0CAC}.Debug|x64.ActiveCfg = Debug|x64
+		{2F657A5C-6E06-4D9C-8162-AAAAC48A0CAC}.Debug|x64.Build.0 = Debug|x64
+		{2F657A5C-6E06-4D9C-8162-AAAAC48A0CAC}.Release|x64.ActiveCfg = Release|x64
+		{2F657A5C-6E06-4D9C-8162-AAAAC48A0CAC}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
