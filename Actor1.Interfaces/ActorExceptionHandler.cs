@@ -14,7 +14,7 @@ namespace Actor1.Interfaces
             {
                 result = new ExceptionHandlingRetryResult(exceptionInformation.Exception,
                     isTransient: true,
-                    retryDelay: TimeSpan.FromSeconds(),
+                    retryDelay: TimeSpan.FromSeconds(30),
                     maxRetryCount: 3);
                 return true;
             }
