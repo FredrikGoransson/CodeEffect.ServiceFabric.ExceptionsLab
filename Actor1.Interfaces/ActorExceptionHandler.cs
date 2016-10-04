@@ -9,12 +9,12 @@ namespace Actor1.Interfaces
             ExceptionInformation exceptionInformation,
             OperationRetrySettings retrySettings,
             out ExceptionHandlingResult result)
-        {
+        {           
             if (exceptionInformation.Exception is TimeoutException)
             {
                 result = new ExceptionHandlingRetryResult(exceptionInformation.Exception,
                     isTransient: true,
-                    retryDelay: TimeSpan.FromSeconds(30),
+                    retryDelay: TimeSpan.FromSeconds(2),
                     maxRetryCount: 3);
                 return true;
             }

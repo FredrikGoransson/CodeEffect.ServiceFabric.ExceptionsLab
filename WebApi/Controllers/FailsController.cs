@@ -76,6 +76,39 @@ namespace WebApi.Controllers
             return state;
         }
 
+        [Route("fails/value")]
+        public async Task<State> GetValue()
+        {
+            var actor = Microsoft.ServiceFabric.Actors.Client.ActorProxy.Create<Actor1.Interfaces.IActor1>(new Microsoft.ServiceFabric.Actors.ActorId(1));
+            var state = new State();
+            state.OldValue = await actor.GetStateAsync();
+            state.NewValue = state.OldValue;
+            return state;
+        }
+
+        [Route("fails/addok/fireandforget")]
+        public Task GetAddOkFireAndForget()
+        {
+            var actor = Microsoft.ServiceFabric.Actors.Client.ActorProxy.Create<Actor1.Interfaces.IActor1>(new Microsoft.ServiceFabric.Actors.ActorId(1));
+            actor.IncreaseStateNeverFailsAsync().FireAndForget();
+            return Task.FromResult(true);
+        }
+
+        [Route("fails/addtrice/fireandforget")]
+        public Task GetAddTriceFireAndForget()
+        {
+            var actor = Microsoft.ServiceFabric.Actors.Client.ActorProxy.Create<Actor1.Interfaces.IActor1>(new Microsoft.ServiceFabric.Actors.ActorId(1));
+            actor.IncreaseStateFailsFirst2TimesAsync().FireAndForget();
+            return Task.FromResult(true);
+        }
+
+        [Route("fails/addnever/fireandforget")]
+        public Task GetAddNeverFireAndForget()
+        {
+            var actor = Microsoft.ServiceFabric.Actors.Client.ActorProxy.Create<Actor1.Interfaces.IActor1>(new Microsoft.ServiceFabric.Actors.ActorId(1));
+            actor.IncreaseStateAlwaysFailsAsync().FireAndForget();
+            return Task.FromResult(true);
+        }
 
         public class State
         {

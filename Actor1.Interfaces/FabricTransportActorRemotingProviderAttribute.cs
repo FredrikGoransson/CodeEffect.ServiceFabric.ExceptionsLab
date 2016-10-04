@@ -29,7 +29,7 @@ namespace Actor1.Interfaces
             fabricTransportSettings.MaxMessageSize = this.GetAndValidateMaxMessageSize(fabricTransportSettings.MaxMessageSize);
             fabricTransportSettings.OperationTimeout = this.GetandValidateOperationTimeout(fabricTransportSettings.OperationTimeout);
             fabricTransportSettings.KeepAliveTimeout = this.GetandValidateKeepAliveTimeout(fabricTransportSettings.KeepAliveTimeout);
-            var exceptionHandlers = new IExceptionHandler[] { new ActorExceptionHandler() };
+            var exceptionHandlers = new IExceptionHandler[] { new ActorExceptionHandler() };            
             return (IServiceRemotingClientFactory)new FabricTransportActorRemotingClientFactory(fabricTransportSettings, callbackClient, (IServicePartitionResolver)null, exceptionHandlers, (string)null);
         }
 

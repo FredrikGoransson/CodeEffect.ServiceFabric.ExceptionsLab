@@ -50,18 +50,24 @@ namespace Actor1
 
         public async Task<int> GetStateAsync()
         {
-            return await this.StateManager.GetOrAddStateAsync<int>("state", 0, CancellationToken.None);
+            ActorEventSource.Current.ActorMessage(this, $"{this.GetType().Name}/{this.Id.GetLongId()}/{nameof(GetStateAsync)} called");
+            var state = await this.StateManager.GetOrAddStateAsync<int>("state", 0, CancellationToken.None);
+            ActorEventSource.Current.ActorMessage(this, $"{this.GetType().Name}/{this.Id.GetLongId()}/{nameof(GetStateAsync)} completed");
+            return state;
         }
 
         public async Task IncreaseStateNeverFailsAsync()
         {
+            ActorEventSource.Current.ActorMessage(this, $"{this.GetType().Name}/{this.Id.GetLongId()}/{nameof(IncreaseStateNeverFailsAsync)} called");
             var state = await this.StateManager.GetOrAddStateAsync<int>("state", 0, CancellationToken.None);
             state++;
             await this.StateManager.AddOrUpdateStateAsync("state", state, (stateName, value) => state);
+            ActorEventSource.Current.ActorMessage(this, $"{this.GetType().Name}/{this.Id.GetLongId()}/{nameof(IncreaseStateNeverFailsAsync)} completed");
         }
 
         public async Task IncreaseStateFailsFirst2TimesAsync()
         {
+            ActorEventSource.Current.ActorMessage(this, $"{this.GetType().Name}/{this.Id.GetLongId()}/{nameof(IncreaseStateFailsFirst2TimesAsync)} called");
             _getStateFailedCalls++;
             if (_getStateFailedCalls == 3)
             {
@@ -69,13 +75,17 @@ namespace Actor1
                 var state = await this.StateManager.GetOrAddStateAsync<int>("state", 0, CancellationToken.None);
                 state++;
                 await this.StateManager.AddOrUpdateStateAsync("state", state, (stateName, value) => state);
+                ActorEventSource.Current.ActorMessage(this, $"{this.GetType().Name}/{this.Id.GetLongId()}/{nameof(IncreaseStateFailsFirst2TimesAsync)} completed");
                 return;
             }
-            throw new TimeoutException($"First 2 calls are not supported. Call {(3 - _getCountFailedCalls)} times.");
+            ActorEventSource.Current.ActorMessage(this, $"{this.GetType().Name}/{this.Id.GetLongId()}/{nameof(IncreaseStateFailsFirst2TimesAsync)} failed");
+            throw new TimeoutException($"First 2 calls are not supported. Call {(3 - _getStateFailedCalls)} times.");
         }
 
         public Task IncreaseStateAlwaysFailsAsync()
         {
+            ActorEventSource.Current.ActorMessage(this, $"{this.GetType().Name}/{this.Id.GetLongId()}/{nameof(IncreaseStateAlwaysFailsAsync)} called");
+            ActorEventSource.Current.ActorMessage(this, $"{this.GetType().Name}/{this.Id.GetLongId()}/{nameof(IncreaseStateAlwaysFailsAsync)} failed");
             throw new NotSupportedException($"This one always fails. Boom.");
         }
     }
