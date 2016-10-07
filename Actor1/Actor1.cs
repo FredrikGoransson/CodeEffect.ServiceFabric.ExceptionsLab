@@ -35,7 +35,7 @@ namespace Actor1
                 _getCountFailedCalls = 0;
                 return Task.FromResult<int>(100);
             }
-            throw new TimeoutException($"First 2 calls are not supported. Call {(3 - _getCountFailedCalls)} times.");
+            throw new InvalidOperationException($"First 2 calls are not supported. Call {(3 - _getCountFailedCalls)} times.");
         }
 
         public Task<int> GetCountFailsAlwaysAsync()
@@ -79,7 +79,7 @@ namespace Actor1
                 return;
             }
             ActorEventSource.Current.ActorMessage(this, $"{this.GetType().Name}/{this.Id.GetLongId()}/{nameof(IncreaseStateFailsFirst2TimesAsync)} failed");
-            throw new TimeoutException($"First 2 calls are not supported. Call {(3 - _getStateFailedCalls)} times.");
+            throw new InvalidOperationException($"First 2 calls are not supported. Call {(3 - _getStateFailedCalls)} times.");
         }
 
         public Task IncreaseStateAlwaysFailsAsync()

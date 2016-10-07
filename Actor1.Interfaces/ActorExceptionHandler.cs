@@ -10,8 +10,8 @@ namespace Actor1.Interfaces
             OperationRetrySettings retrySettings,
             out ExceptionHandlingResult result)
         {           
-            if (exceptionInformation.Exception is TimeoutException)
-            {
+            if (exceptionInformation.Exception is InvalidOperationException)
+            {                
                 result = new ExceptionHandlingRetryResult(exceptionInformation.Exception,
                     isTransient: true,
                     retryDelay: TimeSpan.FromSeconds(2),
